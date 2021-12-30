@@ -1,0 +1,8 @@
+airflow-scheduler*
+airflow-webserver*
+airflow-worker*
+airflow-flower*
+/logs
+/venv
+/dags/__pycache__
+/.idea
