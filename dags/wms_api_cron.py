@@ -22,7 +22,7 @@ with DAG(
     default_args=default_args,
     schedule_interval='15 0 * * *',  # UTC时间每天0点30分跑
     start_date=days_ago(0),
-    dagrun_timeout=timedelta(minutes=60),
+    dagrun_timeout=timedelta(minutes=360),
     catchup=False,
     max_active_runs=1,  # 每次只能有一个dagrun
 ) as dag:
