@@ -58,7 +58,7 @@ with DAG(
     # 批处理正常结束后发送邮件
     email_task = EmailOperator(
         task_id='send_email',
-        to='levine.li@quaie.com, chang.cai@quaie.com, samuel.uling@quaie.com',
+        to='levine.li@quaie.com',
         subject='{{ ds }}库存总体积数/库存总价值/DPD追踪信息/运单时效批处理已完成',
         html_content="""<h3>任务正常结束<h3>"""
     )

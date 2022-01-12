@@ -50,13 +50,6 @@ with DAG(
         ssh_hook=sshHook1
     )
 
-    # API端wms日志清理
-    clean_wms_api_log_task = SSHOperator(
-        task_id='clean_wms_api_log',
-        command='clean_log_sh/178_79_168_53_clean_log_nord.sh',
-        ssh_hook=sshHook1
-    )
-
     # 仓库端wms日志清理
     clean_wms_customer_log_task = SSHOperator(
         task_id='clean_wms_customer_log',
@@ -72,4 +65,4 @@ with DAG(
         html_content="""<h3>任务正常结束<h3>"""
     )
 
-    [clean_mp4admin_log_task, clean_wms_log_task, clean_wms_mobile_log_task, clean_wms_api_log_task, clean_wms_customer_log_task] >> email_task
+    [clean_mp4admin_log_task, clean_wms_log_task, clean_wms_mobile_log_task, clean_wms_customer_log_task] >> email_task
