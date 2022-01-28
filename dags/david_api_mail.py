@@ -69,11 +69,11 @@ with DAG(
     email_task = EmailOperator(
         task_id='send_email',
         to='david@amsma.nl',
-        subject="""{{task_instance.xcom_pull(task_ids='david_api_data')[4]}} ~ 
-        {{task_instance.xcom_pull(task_ids='david_api_data')[3]}}  DPD出单统计""",
-        html_content="""<h3>从{{task_instance.xcom_pull(task_ids='david_api_data')[4]}} 到 
-        {{task_instance.xcom_pull(task_ids='david_api_data')[3]}}, 
-        德国总件数： {{task_instance.xcom_pull(task_ids='david_api_data')[0]}}, 
+        subject="""{{task_instance.xcom_pull(task_ids='david_api_data')[3]}} ~ 
+        {{task_instance.xcom_pull(task_ids='david_api_data')[4]}}  DPD出单统计""",
+        html_content="""<h3>从{{task_instance.xcom_pull(task_ids='david_api_data')[3]}} 到 
+        {{task_instance.xcom_pull(task_ids='david_api_data')[4]}},
+        德国总件数： {{task_instance.xcom_pull(task_ids='david_api_data')[0]}},
         其它国家总件数： {{task_instance.xcom_pull(task_ids='david_api_data')[1]}}<h3>""",
         files=["{{task_instance.xcom_pull(task_ids='david_api_data')[2]}}"]
     )
