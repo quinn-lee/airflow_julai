@@ -38,7 +38,7 @@ with DAG(
     email_task = EmailOperator(
         task_id='send_email',
         to='levine.li@quaie.com',
-        subject='{{ ds }}自动出库批处理已完成',
+        subject='{{ ds }}自动出单批处理已完成',
         html_content="""<h3>任务正常结束<h3>"""
     )
 
