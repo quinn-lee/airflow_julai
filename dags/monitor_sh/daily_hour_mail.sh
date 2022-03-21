@@ -7,16 +7,16 @@ cd ~/monitor
 content="生产监控邮件,请勿回复,详见附件!"
 title="生产环境服务器每小时监控"
 
-content+="
-nginx"
-echo -e "\n\nnginx监控:" > tmp_result.txt
-./remote_login.sh 6
-if [ $? -ne 0 ];then
-	title="生产环境服务器每小时监控 - 警告"
-	content+=",异常!"
-else
-	content+=",正常"
-fi
+#content+="
+#nginx"
+#echo -e "\n\nnginx监控:" > tmp_result.txt
+#./remote_login.sh 6
+#if [ $? -ne 0 ];then
+#	title="生产环境服务器每小时监控 - 警告"
+#	content+=",异常!"
+#else
+#	content+=",正常"
+#fi
 
 #content+="
 #unison"
