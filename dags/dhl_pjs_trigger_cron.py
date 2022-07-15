@@ -20,7 +20,7 @@ default_args = {
 with DAG(
     dag_id='dhl_pjs_trigger_cron',
     default_args=default_args,
-    schedule_interval='*/15 0-8 * * *',  # 每15分钟跑一次
+    schedule_interval='*/15 0-7 * * *',  # 每15分钟跑一次
     start_date=days_ago(0),
     dagrun_timeout=timedelta(minutes=30),
     catchup=False,
