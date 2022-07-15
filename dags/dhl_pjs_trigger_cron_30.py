@@ -18,9 +18,9 @@ default_args = {
 
 # pjs_dhl
 with DAG(
-    dag_id='dhl_pjs_trigger_cron',
+    dag_id='dhl_pjs_trigger_cron_30',
     default_args=default_args,
-    schedule_interval='*/15 0-8 * * *',  # 每15分钟跑一次
+    schedule_interval='15,45 8-16 * * *',  # 每半小时跑一次
     start_date=days_ago(0),
     dagrun_timeout=timedelta(minutes=30),
     catchup=False,
@@ -29,7 +29,7 @@ with DAG(
 
     # pjs_dhl每半小时批处理
     dhl_pjs_trigger_cron_task = SSHOperator(
-        task_id='dhl_pjs_trigger_cron',
+        task_id='dhl_pjs_trigger_cron_30',
         command='dhl_pjs_trigger_cron_sh/dhl_pjs_trigger_cron.sh',
         ssh_hook=sshHook
     )
@@ -38,7 +38,7 @@ with DAG(
     email_task = EmailOperator(
         task_id='send_email',
         to='levine.li@quaie.com',
-        subject='{{ ds }}pjs_dhl每15分钟批处理',
+        subject='{{ ds }}pjs_dhl每半小时批处理',
         html_content="""<h3>任务正常结束<h3>"""
     )
 
