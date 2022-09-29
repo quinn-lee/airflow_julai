@@ -68,7 +68,7 @@ with DAG(
     # 批处理正常结束后发送邮件
     email_task = EmailOperator(
         task_id='send_email',
-        to='david@amsma.nl, nordlicht@novalinks.cn, tim.mao@novalinks.cn',
+        to='david@amsma.nl, nordlicht@novalinks.cn, tim.mao@novalinks.cn, annie@amsma.nl',
         subject="""{{task_instance.xcom_pull(task_ids='david_api_data')[3]}} ~ 
         {{task_instance.xcom_pull(task_ids='david_api_data')[4]}} NORDLICHT DPD出单统计""",
         html_content="""<h3>从{{task_instance.xcom_pull(task_ids='david_api_data')[3]}} 到 
