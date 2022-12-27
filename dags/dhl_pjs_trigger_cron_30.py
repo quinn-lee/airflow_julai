@@ -35,11 +35,11 @@ with DAG(
     )
 
     # 批处理正常结束后发送邮件
-    email_task = EmailOperator(
-        task_id='send_email',
-        to='levine.li@quaie.com',
-        subject='{{ ds }}pjs_dhl每半小时批处理',
-        html_content="""<h3>任务正常结束<h3>"""
-    )
+    #email_task = EmailOperator(
+    #    task_id='send_email',
+    #    to='levine.li@quaie.com',
+    #    subject='{{ ds }}pjs_dhl每半小时批处理',
+    #    html_content="""<h3>任务正常结束<h3>"""
+    #)
 
-    dhl_pjs_trigger_cron_task >> email_task
+    #dhl_pjs_trigger_cron_task >> email_task
