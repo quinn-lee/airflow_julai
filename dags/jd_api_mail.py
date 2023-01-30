@@ -47,7 +47,7 @@ with DAG(
     email_task = EmailOperator(
         task_id='send_email',
         to='levine.li@quaie.com',
-        cc='levine.li@quaie.com'
+        cc='levine.li@quaie.com',
         subject="""{{task_instance.xcom_pull(task_ids='jd_api_data')[1]}} DPD出单统计""",
         html_content="""<h3>您好，{{task_instance.xcom_pull(task_ids='jd_api_data')[1]}} Nordlicht使用DPD API下单件数为：{{task_instance.xcom_pull(task_ids='jd_api_data')[0]}}。<h3>"""
     )
