@@ -16,21 +16,21 @@ default_args = {
     'retry_delay': timedelta(seconds=120),
 }
 
-# 问题件申诉状态修改批处理
+# 上架数据，发邮件通知全部客户
 with DAG(
-    dag_id='outbound_claim',
+    dag_id='daily_mount_email',
     default_args=default_args,
-    schedule_interval='25 0 * * *',  # UTC时间每天0点5分跑
+    schedule_interval='0 21 * * *',  # UTC时间每天21点0分跑
     start_date=days_ago(0),
     dagrun_timeout=timedelta(minutes=60),
     catchup=False,
     max_active_runs=1,  # 每次只能有一个dagrun
 ) as dag:
 
-    # 问题件申诉状态修改批处理
+    # 上架数据，发邮件通知全部客户
     outbound_claim_update = SSHOperator(
-        task_id='outbound_claim_update',
-        command='outbound_claim_sh/outbound_claim_update.sh',
+        task_id='send_daily_mount_email',
+        command='send_all_daily_mount/send_all_daily_mount.sh',
         ssh_hook=sshHook
     )
 
@@ -39,8 +39,8 @@ with DAG(
     email_task = EmailOperator(
         task_id='send_email',
         to='levine.li@quaie.com',
-        subject='{{ yesterday_ds }}问题件申诉状态修改批处理已完成',
+        subject='{{ ds }}上架数据邮件发送已完成',
         html_content="""<h3>任务正常结束<h3>"""
     )
 
-    outbound_claim_update >> email_task
+    send_daily_mount_email >> email_task
