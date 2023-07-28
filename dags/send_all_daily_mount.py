@@ -28,7 +28,7 @@ with DAG(
 ) as dag:
 
     # 上架数据，发邮件通知全部客户
-    outbound_claim_update = SSHOperator(
+    send_daily_mount_email = SSHOperator(
         task_id='send_daily_mount_email',
         command='send_all_daily_mount/send_all_daily_mount.sh',
         ssh_hook=sshHook
