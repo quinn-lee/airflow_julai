@@ -30,7 +30,7 @@ with DAG(
     # 上架数据，发邮件通知全部客户
     send_daily_mount_email = SSHOperator(
         task_id='send_daily_mount_email',
-        command='send_all_daily_mount/send_all_daily_mount.sh',
+        command='send_daily_mount_email/send_all_daily_mount.sh',
         ssh_hook=sshHook
     )
 
