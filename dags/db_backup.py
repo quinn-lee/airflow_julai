@@ -65,4 +65,4 @@ with DAG(
         html_content="""<h3>任务正常结束<h3>"""
     )
 
-    [mp4_db_backup_task, wms_db_backup_task, finance_db_backup_task, fba_db_backup_task] >> email_task
+    wms_db_backup_task >> email_task
