@@ -29,12 +29,12 @@ with DAG(
     max_active_runs=1,  # 每次只能有一个dagrun
 ) as dag:
 
-    # mp4数据库备份
-    mp4_db_backup_task = SSHOperator(
-        task_id='mp4_db_backup',
-        command='db_backup_sh/178_79_168_53_db_bak_mp4.sh',
-        ssh_hook=sshHook1
-    )
+    # # mp4数据库备份
+    # mp4_db_backup_task = SSHOperator(
+    #     task_id='mp4_db_backup',
+    #     command='db_backup_sh/178_79_168_53_db_bak_mp4.sh',
+    #     ssh_hook=sshHook1
+    # )
 
     # wms数据库备份
     wms_db_backup_task = SSHOperator(
@@ -43,19 +43,19 @@ with DAG(
         ssh_hook=sshHook1
     )
 
-    # finance数据库备份
-    finance_db_backup_task = SSHOperator(
-        task_id='finance_db_backup',
-        command='db_backup_sh/172_105_3_134_db_bak_finance.sh',
-        ssh_hook=sshHook2
-    )
+    # # finance数据库备份
+    # finance_db_backup_task = SSHOperator(
+    #     task_id='finance_db_backup',
+    #     command='db_backup_sh/172_105_3_134_db_bak_finance.sh',
+    #     ssh_hook=sshHook2
+    # )
 
-    # fba数据库备份
-    fba_db_backup_task = SSHOperator(
-        task_id='fba_db_backup',
-        command='db_backup_sh/47_103_131_6_db_bak_fba.sh',
-        ssh_hook=sshHook3
-    )
+    # # fba数据库备份
+    # fba_db_backup_task = SSHOperator(
+    #     task_id='fba_db_backup',
+    #     command='db_backup_sh/47_103_131_6_db_bak_fba.sh',
+    #     ssh_hook=sshHook3
+    # )
 
     # 批处理正常结束后发送邮件
     email_task = EmailOperator(
