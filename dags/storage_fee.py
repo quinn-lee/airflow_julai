@@ -55,6 +55,13 @@ with DAG(
         ssh_hook=sshHook
     )
 
+    # FBA分拨仓储费批处理
+    fbafenbo_task = SSHOperator(
+        task_id='storage_fee_for_fbafenbo',
+        command='storage_fee_sh/storage_fee_for_fenbo.sh',
+        ssh_hook=sshHook
+    )
+
     # 批处理正常结束后发送邮件
     email_task = EmailOperator(
         task_id='send_email',
@@ -63,4 +70,4 @@ with DAG(
         html_content="""<h3>任务正常结束<h3>"""
     )
 
-    [dropshipping_task, fbansin_task, fba_task, fbaremove_task] >> email_task
+    [dropshipping_task, fbansin_task, fba_task, fbaremove_task, fbafenbo_task] >> email_task
