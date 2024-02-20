@@ -20,7 +20,7 @@ default_args = {
 with DAG(
     dag_id='outbound_notification_worker_cron',
     default_args=default_args,
-    schedule_interval='0 9 * * 0,6',  # UTC时间每周末9点
+    schedule_interval='30 8 * * 0,6',  # UTC时间每周末8点半
     start_date=days_ago(0),
     dagrun_timeout=timedelta(minutes=360),
     catchup=False,
