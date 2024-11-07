@@ -63,11 +63,11 @@ with DAG(
     )
 
     # 耗材仓储费批处理
-    packing_task = SSHOperator(
-        task_id='storage_fee_for_packing',
-        command='storage_fee_sh/storage_fee_for_packing.sh',
-        ssh_hook=sshHook
-    )
+    #packing_task = SSHOperator(
+    #    task_id='storage_fee_for_packing',
+    #    command='storage_fee_sh/storage_fee_for_packing.sh',
+    #    ssh_hook=sshHook
+    #)
 
     # 批处理正常结束后发送邮件
     email_task = EmailOperator(
@@ -77,4 +77,4 @@ with DAG(
         html_content="""<h3>任务正常结束<h3>"""
     )
 
-    [dropshipping_task, fbansin_task, fba_task, fbaremove_task, fbafenbo_task, packing_task] >> email_task
+    [dropshipping_task, fbansin_task, fba_task, fbaremove_task, fbafenbo_task] >> email_task
