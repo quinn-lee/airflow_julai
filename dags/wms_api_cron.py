@@ -20,7 +20,7 @@ default_args = {
 with DAG(
     dag_id='wms_api_cron',
     default_args=default_args,
-    schedule_interval='15 0 * * *',  # UTC时间每天0点30分跑
+    schedule_interval='15 2 * * *',  # UTC时间每天2点15分跑
     start_date=days_ago(0),
     dagrun_timeout=timedelta(minutes=360),
     catchup=False,
