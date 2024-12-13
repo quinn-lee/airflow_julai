@@ -48,6 +48,13 @@ with DAG(
         ssh_hook=sshHook
     )
 
+    # 获取FEDEX追踪信息
+    get_fedex_tracking_info = SSHOperator(
+        task_id='get_fedex_tracking_info',
+        command='wms_api_cron_sh/get_fedex_tracking_info.sh',
+        ssh_hook=sshHook
+    )
+
     # 计算运单时效
     get_express_bill_tempo = SSHOperator(
         task_id='get_express_bill_tempo',
@@ -63,4 +70,4 @@ with DAG(
         html_content="""<h3>任务正常结束<h3>"""
     )
 
-    [get_inventory_total_volume_task, get_inventory_total_price_task, get_dpd_tracking_info >> get_express_bill_tempo] >> email_task
+    [get_inventory_total_volume_task, get_inventory_total_price_task, get_dpd_tracking_info, get_fedex_tracking_info >> get_express_bill_tempo] >> email_task
